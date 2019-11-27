@@ -1,0 +1,4 @@
+﻿  Asteroid.cpp
+C:\Users\Kaspe\OneDrive\Prog\Asteroids\src\Game.h(59,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Kaspe\OneDrive\Prog\Asteroids\src\Game.h(70,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Asteroids.vcxproj -> C:\Users\Kaspe\OneDrive\Prog\Asteroids\x64\Asteroids\Asteroids.exe
