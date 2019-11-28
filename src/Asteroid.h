@@ -1,15 +1,12 @@
 #pragma once
 #include "SDL.h"
-#include "Rectangle.h"
 #include "Entity.h"
+#include "Rectangle.h"
 
 class Asteroid : public Entity
 {
 public:
 	Asteroid();
-	~Asteroid();
-
-	void Update();
 
 private:
 	Rectangle rect;

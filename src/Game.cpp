@@ -7,11 +7,11 @@
 
 */
 
-#pragma once
 #include "Game.h"
 #include "SpaceShip.h"
 #include "Asteroid.h"
-#include "Rectangle.h"#include "Shot.h"
+#include "Rectangle.h"
+#include "Shot.h"
 #include <SDL_keycode.h>
 #include <ctime>
 #include <cassert>
@@ -28,16 +28,9 @@ const Uint8* Game::input = new Uint8;
 float Game::time = 0.f;
 bool Game::bGameOver = false;
 
-Game::Game()
-{
-}
-
-Game::~Game()
-{
-}
-
 void Game::Init()
 {
+	isRunning = true;
 	//get new random seed
 	srand(std::time(NULL));
 
@@ -50,7 +43,6 @@ void Game::Init()
 	StartGame();
 
 	//execute update loop
-	isRunning = true;
 	while (isRunning)
 	{
 		HandleEvents();
@@ -94,7 +86,7 @@ void Game::HandleEvents()
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
-			isRunning = true;
+			isRunning = false;
 	}
 }
 
@@ -118,6 +110,7 @@ void Game::StartGame()
 //runs once each frame
 void Game::UpdateGame()
 {
+
 	//Draw background
 	SDL_SetRenderDrawColor(Game::renderer, 15, 15, 15, 255);
 	SDL_RenderClear(Game::renderer);
@@ -126,19 +119,19 @@ void Game::UpdateGame()
 
 	//update entities
 	{
-		for (int i = 0; i < Game::entities.size(); i++)
+		for (int i = 0; i < entities.size(); i++)
 		{
-			if (Game::entities[i] != nullptr)
-				Game::entities[i]->Update();
+			if (entities[i] != nullptr)
+				entities[i]->Update();
 		}
 	}
 
 	//update recs
 	{
-		for (int i = 0; i < Game::recs.size(); i++)
+		for (int i = recs.size() - 1; i >= 0; i--)
 		{
-			if (Game::recs[i] != nullptr)
-				Game::recs[i]->Update();
+			if (recs[i] != nullptr)
+				recs[i]->Update();
 		}
 	}
 
@@ -147,14 +140,14 @@ void Game::UpdateGame()
 		spaceShip->Update();
 
 	//present graphics in renderer
-	SDL_RenderPresent(Game::renderer);
+	SDL_RenderPresent(renderer);
 }
 
 void Game::RestartGame()
 {
-	SDL_SetRenderDrawColor(Game::renderer, 20, 20, 20, 255);
-	SDL_RenderClear(Game::renderer);
-	SDL_RenderPresent(Game::renderer);
+	SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
+	SDL_RenderClear(renderer);
+	SDL_RenderPresent(renderer);
 
 	//TODO: render game over screen
 	entities.clear();

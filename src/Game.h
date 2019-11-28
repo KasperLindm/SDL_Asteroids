@@ -1,15 +1,14 @@
 #pragma once
 #include "SDL.h"
-#include "SpaceShip.h"
 #include <iostream>
 #include <vector>
+#include "Rectangle.h"
+
+struct SpaceShip;
+class Entity;
 
 struct Game
 {
-public:
-	Game();
-	~Game();
-
 	int DeltaTime();
 
 	void Init();
@@ -29,8 +28,6 @@ public:
 	{
 		bGameOver = true;
 	}
-
-	static bool bGameOver;
 
 	static const Uint8* Input()
 	{
@@ -61,10 +58,13 @@ public:
 			if (vector->at(i) != ent)
 				continue;
 
-			vector->erase(vector->begin() + i);
+			auto it = vector->begin() + i;
+			//vector->erase(it);
+			delete* it;
 			return;
 		}
 	}
+
 	static void reverseRemoveFromRectVector(std::vector<Rectangle*>* vector, Rectangle* ent)
 	{
 		for (int i = vector->size() - 1; i >= 0; i--)
@@ -72,10 +72,14 @@ public:
 			if (vector->at(i) != ent)
 				continue;
 
-			vector->erase(vector->begin() + i);
+			auto it = vector->begin() + i;
+			//vector->erase(it);
+			delete* it;
 			return;
 		}
 	}
+
+	static bool bGameOver;
 
 	static SDL_Renderer* renderer;
 	static const Uint8* input;
@@ -87,6 +91,7 @@ public:
 	static SpaceShip* MainShip;
 
 private:
+
 	bool isRunning = false;
 
 	//window

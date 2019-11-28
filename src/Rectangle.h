@@ -1,23 +1,22 @@
 #pragma once
 #include "SDL.h"
-#include "Entity.h"
 #include <utility>
 #include <string>
 
 struct Collider;
+class Entity;
 
-struct Rectangle
+class Rectangle
 {
 public:
 	Rectangle(Entity* parent = nullptr);
-	~Rectangle();
 
 	void Update();
 
 	static void CalculateCollisions();
 
 	std::pair<float, float> vel;
-	float width = 10.f, height = 10.f;
+	int width = 10, height = 10;
 	float xSpeed = 0.f, ySpeed = 0.f;
 	float xPos = 0.f, yPos = 0.f;
 	float speed = 1.f;
@@ -35,8 +34,6 @@ private:
 
 struct Collider
 {
-public:
-	Collider() {};
 	std::string tag;
 	Rectangle* rect;
 	bool doesColl;

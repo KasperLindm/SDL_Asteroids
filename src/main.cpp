@@ -8,5 +8,6 @@ int main()
 	Game* game = new Game();
 	game->Init();
 	
+	delete game;
 	return 0;
 }

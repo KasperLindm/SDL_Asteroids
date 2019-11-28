@@ -6,9 +6,6 @@ class Shot : public Entity
 {
 public:
 	Shot();
-	~Shot();
-
-	virtual void Update();
 	virtual void OnCollisionEnter(Collider* coll);
 
 private:

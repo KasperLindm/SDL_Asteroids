@@ -1,13 +1,11 @@
 #pragma once
 #include "SDL.h"
-#include "Rectangle.h"
 #include "Entity.h"
+#include "Rectangle.h"
 
-class SpaceShip : public Entity
+struct SpaceShip : Entity
 {
-public:
 	SpaceShip(int x, int y, int w, int h);
-	~SpaceShip();
 
 	virtual void Update();
 

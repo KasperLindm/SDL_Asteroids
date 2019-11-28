@@ -1,4 +1,3 @@
-#pragma once
 #include "Asteroid.h"
 #include "Game.h"
 #include <iostream>
@@ -24,13 +23,4 @@ Asteroid::Asteroid()
 
 	rect.tag = "Asteroid";
 	rect.parentEntity = this;
-}
-
-Asteroid::~Asteroid()
-{
-}
-
-//runs once per frame
-void Asteroid::Update()
-{
 }

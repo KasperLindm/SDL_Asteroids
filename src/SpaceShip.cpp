@@ -1,4 +1,3 @@
-#pragma once
 #include "SpaceShip.h"
 #include "Shot.h"
 #include "Game.h"
@@ -32,10 +31,6 @@ SpaceShip::SpaceShip(int x, int y, int w, int h)
 
 	rect.tag = "Ship";
 	rect.parentEntity = this;
-}
-
-SpaceShip::~SpaceShip()
-{
 }
 
 //runs once per frame
@@ -86,5 +81,5 @@ void SpaceShip::OnCollisionEnter(Collider* otherColl)
 void SpaceShip::Shoot()
 {
 	//instantiate new show at location
-	Shot* shot = new Shot();
+	Game::entities.push_back(new Shot());
 }

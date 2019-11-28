@@ -1,6 +1,6 @@
-#pragma once
 #include "Rectangle.h"
 #include "Game.h"
+#include "Entity.h"
 
 Rectangle::Rectangle(Entity* parent)
 {
@@ -12,10 +12,6 @@ Rectangle::Rectangle(Entity* parent)
 	rectangle.y = yPos;
 	rectangle.h = height;
 	rectangle.w = width;
-}
-
-Rectangle::~Rectangle()
-{
 }
 
 //runs once per frame
@@ -56,15 +52,15 @@ void Rectangle::CalculateCollisions()
 	for (int i = 0; i < Game::recs.size(); i++)
 	{
 		it = Game::recs[i];
-		for (int j = i; j < Game::recs.size(); j++)
+		for (int j = 0; j < Game::recs.size(); j++)
 		{
 			jt = Game::recs[j];
 
 			//continue if comparing with self , null or if there is a parent-entity missing 
 			if (jt == it ||
 				jt == nullptr ||
-				it == nullptr || 
-				it->parentEntity == nullptr || 
+				it == nullptr ||
+			it->parentEntity == nullptr ||
 				jt->parentEntity == nullptr)
 				continue;
 
@@ -74,21 +70,14 @@ void Rectangle::CalculateCollisions()
 				(it->yPos + it->height > jt->yPos) &&
 				(it->yPos < jt->yPos + jt->height))
 			{
-
 				//create first collider
-				Collider coll = Collider();
-				coll.rect = it;
-				coll.tag = it->tag;
-				coll.doesColl = true;
+				Collider coll{ it->tag,it, true };
 
 				//create other collider
-				Collider otherColl = Collider();
-				otherColl.rect = jt;
-				otherColl.tag = jt->tag;
-				otherColl.doesColl = true;
+				Collider otherColl{ jt->tag,jt, true };
 
-				it->parentEntity->OnCollisionEnter(&otherColl);
 				jt->parentEntity->OnCollisionEnter(&coll);
+				it->parentEntity->OnCollisionEnter(&otherColl);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
-#pragma once
 #include "Shot.h"
 #include "Game.h"
+#include "SpaceShip.h"
 
 Shot::Shot()
 {
@@ -27,15 +27,6 @@ Shot::Shot()
 
 	rect.tag = "Shot";
 	rect.parentEntity = this;
-}
-
-Shot::~Shot()
-{
-}
-
-//runs once per frame
-void Shot::Update()
-{
 }
 
 //gets called when this hits another entity/collider/rect

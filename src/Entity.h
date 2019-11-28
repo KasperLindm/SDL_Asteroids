@@ -6,6 +6,10 @@ class Entity
 {
 public:
 	Entity() {	};
-	virtual void Update() { std::cout << "parent: update()" << std::endl; };
+	virtual ~Entity() { 
+		printf("Dude");
+	};
+
+	virtual void Update() {  };
 	virtual void OnCollisionEnter(Collider* otherColl) {};
 };
